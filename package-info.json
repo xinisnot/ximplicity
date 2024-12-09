@@ -1,7 +1,7 @@
 {
 	"name" : "ximplicity",
 	"author" : "xin@xinisnot",
-	"description" : "My sound building blocks.",
+	"description" : "Simple Max building blocks",
 	"homepatcher" : "ximplicity overview.maxpat",
 	"max_version_max" : "none",
 	"max_version_min" : "9.0.0",
