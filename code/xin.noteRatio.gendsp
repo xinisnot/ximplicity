@@ -1,0 +1,167 @@
+{
+	"patcher" : 	{
+		"fileversion" : 1,
+		"appversion" : 		{
+			"major" : 9,
+			"minor" : 0,
+			"revision" : 2,
+			"architecture" : "x64",
+			"modernui" : 1
+		}
+,
+		"classnamespace" : "dsp.gen",
+		"rect" : [ 630.0, 87.0, 781.0, 734.0 ],
+		"gridsize" : [ 15.0, 15.0 ],
+		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-9",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 673.0, 12.0, 99.0, 22.0 ],
+					"text" : "in 3 tup0 @min 0"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-10",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 541.0, 12.0, 99.0, 22.0 ],
+					"text" : "in 2 dot0 @min 0"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-11",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 409.0, 12.0, 106.0, 22.0 ],
+					"text" : "in 1 note0 @min 1"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-8",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 277.0, 12.0, 93.0, 22.0 ],
+					"text" : "in 3 tup @min 0"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-7",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 145.0, 12.0, 93.0, 22.0 ],
+					"text" : "in 2 dot @min 0"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-6",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 13.0, 12.0, 99.0, 22.0 ],
+					"text" : "in 1 note @min 1"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"code" : "// Calculate the ratio of 2 note values.\r\n// Note: The note should be given a relative value\r\n// (e.g., 4 for a quarter note).\n\ncalcNoteCoeff(note) {\n    return 1 / note;\n}\n\ncalcDotCoeff(dot) {\n    v = floor(dot) * (dot >= 0);\n    v = pow(2, v);\n    v = (v - 1) / v;\n\n    return v + 1;\n}\n\ncalcTupCoeff(tup) {\n    v  = floor(tup) * (tup >= 0);\n    v2 = v;\n    v3 = 0;\n\n    while(v2 >= 2) {\n        v3 += 1;\n        v2 /= 2;\n    }\n\n    return tup <= 0 ? 1 :pow(2, v3) / v ;\n}\n\n\nnote  = in1;\ndot   = in2;\ntup   = in3;\nnote0 = in4;\ndot0  = in5;\ntup0  = in6;\n\nn0 = calcNoteCoeff(note0) * calcDotCoeff(dot0) * calcTupCoeff(tup0);\nn  = calcNoteCoeff(note)  * calcDotCoeff(dot)  * calcTupCoeff(tup);\n\nout1 = n / n0;",
+					"fontface" : 0,
+					"fontname" : "<Monospaced>",
+					"fontsize" : 12.0,
+					"id" : "obj-5",
+					"maxclass" : "codebox",
+					"numinlets" : 6,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 13.0, 36.0, 679.0, 660.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-4",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 13.0, 698.0, 85.0, 22.0 ],
+					"text" : "out 1 noteratio"
+				}
+
+			}
+ ],
+		"lines" : [ 			{
+				"patchline" : 				{
+					"destination" : [ "obj-5", 4 ],
+					"source" : [ "obj-10", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-5", 3 ],
+					"source" : [ "obj-11", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-4", 0 ],
+					"source" : [ "obj-5", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-5", 0 ],
+					"source" : [ "obj-6", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-5", 1 ],
+					"source" : [ "obj-7", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-5", 2 ],
+					"source" : [ "obj-8", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-5", 5 ],
+					"source" : [ "obj-9", 0 ]
+				}
+
+			}
+ ],
+		"originid" : "pat-92"
+	}
+
+}

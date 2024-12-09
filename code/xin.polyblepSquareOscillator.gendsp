@@ -1,0 +1,110 @@
+{
+	"patcher" : 	{
+		"fileversion" : 1,
+		"appversion" : 		{
+			"major" : 9,
+			"minor" : 0,
+			"revision" : 2,
+			"architecture" : "x64",
+			"modernui" : 1
+		}
+,
+		"classnamespace" : "dsp.gen",
+		"rect" : [ 84.0, 131.0, 612.0, 546.0 ],
+		"gridsize" : [ 15.0, 15.0 ],
+		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-6",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 378.0, 13.0, 218.0, 22.0 ],
+					"text" : "in 3 duty @min 0 @max 1 @default 0.5"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"code" : "polyblep(t, dt)\n{\n    y  = 0;\n    \n    if(t < dt)\n    {\n        t /= dt;\n        y  = t+t - t*t - 1;\n    }\n    else if(t > 1 - dt)\n    {\n        t = (t - 1) / dt;\n        y = t*t + t+t + 1;\n    }\n\n    return y;\n}\n\ndt\t= in2 / SAMPLERATE;\nt0\t= in1;\nt1\t= wrap(t0 + 1 - in3, 0, 1);\n\npb1    = polyblep(t0, dt);\npb2    = polyblep(t1, dt);\nnaive  = (t0 < in3) * 2 - 1;\n\nout1   = naive + pb1 - pb2;",
+					"fontface" : 0,
+					"fontname" : "<Monospaced>",
+					"fontsize" : 12.0,
+					"id" : "obj-5",
+					"maxclass" : "codebox",
+					"numinlets" : 3,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 14.0, 37.0, 383.0, 470.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-1",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 14.0, 13.0, 64.0, 22.0 ],
+					"text" : "in 1 phase"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-2",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 196.0, 13.0, 84.0, 22.0 ],
+					"text" : "in 2 frequency"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-4",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 14.0, 509.0, 45.0, 22.0 ],
+					"text" : "out 1 y"
+				}
+
+			}
+ ],
+		"lines" : [ 			{
+				"patchline" : 				{
+					"destination" : [ "obj-5", 0 ],
+					"source" : [ "obj-1", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-5", 1 ],
+					"source" : [ "obj-2", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-4", 0 ],
+					"source" : [ "obj-5", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-5", 2 ],
+					"source" : [ "obj-6", 0 ]
+				}
+
+			}
+ ],
+		"originid" : "pat-313"
+	}
+
+}

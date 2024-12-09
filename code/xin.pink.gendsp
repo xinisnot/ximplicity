@@ -1,0 +1,53 @@
+{
+	"patcher" : 	{
+		"fileversion" : 1,
+		"appversion" : 		{
+			"major" : 9,
+			"minor" : 0,
+			"revision" : 2,
+			"architecture" : "x64",
+			"modernui" : 1
+		}
+,
+		"classnamespace" : "dsp.gen",
+		"rect" : [ 630.0, 337.0, 724.0, 475.0 ],
+		"gridsize" : [ 15.0, 15.0 ],
+		"boxes" : [ 			{
+				"box" : 				{
+					"code" : "// Generate Pink noise by Paul Kellett's method.\n// https://www.musicdsp.org/en/latest/Filters/76-pink-noise-filter.html\n\nHistory b0(0);\nHistory b1(0);\nHistory b2(0);\nHistory b3(0);\nHistory b4(0);\nHistory b5(0);\nHistory b6(0);\n\nwhite = noise();\n\nb0 = 0.99886 * b0 + white * 0.0555179;\nb1 = 0.99332 * b1 + white * 0.0750759;\nb2 = 0.96900 * b2 + white * 0.1538520;\nb3 = 0.86650 * b3 + white * 0.3104856;\nb4 = 0.55000 * b4 + white * 0.5329522;\nb5 = -0.7616 * b5 - white * 0.0168980;\n\nout1 = (b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362) * 0.105;\n\n// update\nb6 = white * 0.115926;",
+					"fontface" : 0,
+					"fontname" : "<Monospaced>",
+					"fontsize" : 12.0,
+					"id" : "obj-5",
+					"maxclass" : "codebox",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 11.0, 12.0, 696.0, 427.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-4",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 11.0, 441.0, 61.0, 22.0 ],
+					"text" : "out 1 pink"
+				}
+
+			}
+ ],
+		"lines" : [ 			{
+				"patchline" : 				{
+					"destination" : [ "obj-4", 0 ],
+					"source" : [ "obj-5", 0 ]
+				}
+
+			}
+ ],
+		"originid" : "pat-92"
+	}
+
+}
