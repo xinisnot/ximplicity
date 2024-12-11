@@ -1,0 +1,91 @@
+{
+	"patcher" : 	{
+		"fileversion" : 1,
+		"appversion" : 		{
+			"major" : 9,
+			"minor" : 0,
+			"revision" : 2,
+			"architecture" : "x64",
+			"modernui" : 1
+		}
+,
+		"classnamespace" : "dsp.gen",
+		"rect" : [ 84.0, 131.0, 429.0, 451.0 ],
+		"gridsize" : [ 15.0, 15.0 ],
+		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-23",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 17.0, 411.0, 45.0, 22.0 ],
+					"text" : "out 1 y"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-22",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 367.0, 16.0, 41.0, 22.0 ],
+					"text" : "in 2 dt"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-21",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 17.0, 16.0, 35.0, 22.0 ],
+					"text" : "in 1 t"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"code" : "// t is phase\r\n// dt = frequency / SAMPLERATE\r\n\r\nt  = in1;\r\ndt = in2;\r\ny  = 0;\n\nif(t < dt)\r\n{\n    t /= dt;\n    y  = t + t - t*t - 1;\n}\nelse if(t > 1 - dt)\r\n{\n    t = (t - 1) / dt;\n    y = t*t + t + t + 1;\n}\n\nout1 = y;",
+					"fontface" : 0,
+					"fontname" : "<Monospaced>",
+					"fontsize" : 12.0,
+					"id" : "obj-20",
+					"maxclass" : "codebox",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 17.0, 53.0, 369.0, 342.0 ]
+				}
+
+			}
+ ],
+		"lines" : [ 			{
+				"patchline" : 				{
+					"destination" : [ "obj-23", 0 ],
+					"source" : [ "obj-20", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-20", 0 ],
+					"source" : [ "obj-21", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-20", 1 ],
+					"source" : [ "obj-22", 0 ]
+				}
+
+			}
+ ],
+		"originid" : "pat-111"
+	}
+
+}

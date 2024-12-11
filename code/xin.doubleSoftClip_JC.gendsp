@@ -1,0 +1,205 @@
+{
+	"patcher" : 	{
+		"fileversion" : 1,
+		"appversion" : 		{
+			"major" : 9,
+			"minor" : 0,
+			"revision" : 2,
+			"architecture" : "x64",
+			"modernui" : 1
+		}
+,
+		"classnamespace" : "dsp.gen",
+		"rect" : [ 84.0, 131.0, 1326.0, 810.0 ],
+		"gridsize" : [ 15.0, 15.0 ],
+		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-12",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 182.0, 15.0, 54.0, 22.0 ],
+					"text" : "in 2 gain"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-11",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 1146.0, 15.0, 151.0, 22.0 ],
+					"text" : "in 8 lowerSkew @default 1"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-10",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 986.0, 15.0, 153.0, 22.0 ],
+					"text" : "in 7 upperSkew @default 1"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-9",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 825.0, 15.0, 149.0, 22.0 ],
+					"text" : "in 6 xOffFactor @default 1"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-8",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 664.0, 15.0, 121.0, 22.0 ],
+					"text" : "in 5 slope @default 1"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-4",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 504.0, 15.0, 145.0, 22.0 ],
+					"text" : "in 4 lowerLim @default -1"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-3",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 343.0, 15.0, 143.0, 22.0 ],
+					"text" : "in 3 upperLim @default 1"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"code" : "// https://jatinchowdhury18.medium.com/complex-nonlinearities-episode-1-double-soft-clipper-5ce826fa82d6\r\n\r\ninput\t\t= in1 * in2;\r\nupperLim\t= in3;\r\nlowerLim\t= in4;\r\nslope\t\t= in5;\r\nxOffFactor\t= in6;\r\nupperSkew\t= in7;\r\nlowerSkew\t= in8;\r\n\r\nxOff = pow(slope, xOffFactor) / slope;\r\n\r\nif(0 < input)\r\n{\r\n\tx = (input - xOff) * upperSkew;\r\n\t\r\n\tif(1/slope <= x)\r\n\t{\r\n\t\tout1 = upperLim;\r\n\t}\r\n\telse if(x <= -1/slope)\r\n\t{\r\n\t\tout1 = 0;\r\n\t}\r\n\telse\r\n\t{\r\n\t\tout1 = 1.5 * upperLim * (slope*x - pow(slope*x, 3) / 3) * 0.5 + upperLim * 0.5;\r\n\t}\r\n}\r\nelse\r\n{\r\n\tx = (input + xOff) * lowerSkew;\r\n\t\r\n\tif(1/slope <= x)\r\n\t{\r\n\t\tout1 = 0;\r\n\t}\r\n\telse if(x <= -1/slope)\r\n\t{\r\n\t\tout1 = lowerLim;\r\n\t}\r\n\telse\r\n\t{\r\n\t\tout1 = 1.5 * (-lowerLim) * (slope*x - pow(slope*x, 3) / 3) * 0.5 + lowerLim * 0.5;\r\n\t}\r\n}",
+					"fontface" : 0,
+					"fontname" : "<Monospaced>",
+					"fontsize" : 12.0,
+					"id" : "obj-5",
+					"maxclass" : "codebox",
+					"numinlets" : 8,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 21.0, 52.0, 1144.0, 705.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-6",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 21.0, 15.0, 37.0, 22.0 ],
+					"text" : "in 1 x"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-7",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 21.0, 771.0, 45.0, 22.0 ],
+					"text" : "out 1 y"
+				}
+
+			}
+ ],
+		"lines" : [ 			{
+				"patchline" : 				{
+					"destination" : [ "obj-5", 6 ],
+					"source" : [ "obj-10", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-5", 7 ],
+					"source" : [ "obj-11", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-5", 1 ],
+					"source" : [ "obj-12", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-5", 2 ],
+					"source" : [ "obj-3", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-5", 3 ],
+					"source" : [ "obj-4", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-7", 0 ],
+					"source" : [ "obj-5", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-5", 0 ],
+					"source" : [ "obj-6", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-5", 4 ],
+					"source" : [ "obj-8", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-5", 5 ],
+					"source" : [ "obj-9", 0 ]
+				}
+
+			}
+ ],
+		"originid" : "pat-207"
+	}
+
+}

@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "dsp.gen",
-		"rect" : [ 1024.0, 189.0, 542.0, 534.0 ],
+		"rect" : [ 84.0, 131.0, 553.0, 551.0 ],
 		"gridsize" : [ 15.0, 15.0 ],
 		"boxes" : [ 			{
 				"box" : 				{
@@ -297,7 +297,7 @@
 
 			}
  ],
-		"originid" : "pat-19"
+		"originid" : "pat-93"
 	}
 
 }
