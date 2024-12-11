@@ -10,169 +10,29 @@
 		}
 ,
 		"classnamespace" : "dsp.gen",
-		"rect" : [ 59.0, 106.0, 515.0, 659.0 ],
+		"rect" : [ 59.0, 106.0, 550.0, 659.0 ],
 		"gridsize" : [ 15.0, 15.0 ],
 		"boxes" : [ 			{
 				"box" : 				{
-					"id" : "obj-31",
+					"id" : "obj-6",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patcher" : 					{
-						"fileversion" : 1,
-						"appversion" : 						{
-							"major" : 9,
-							"minor" : 0,
-							"revision" : 2,
-							"architecture" : "x64",
-							"modernui" : 1
-						}
-,
-						"classnamespace" : "dsp.gen",
-						"rect" : [ 59.0, 106.0, 899.0, 342.0 ],
-						"gridsize" : [ 15.0, 15.0 ],
-						"boxes" : [ 							{
-								"box" : 								{
-									"code" : "// Rational tanh approximation.\n// https://www.musicdsp.org/en/latest/Other/238-rational-tanh-approximation.html?highlight=tanh%20function\n\nx = in1;\ny = 0;\n\nif(x < -3)      y = -1;\nelse if(x > 3)  y = 1;\nelse            y = x * (27 + x * x) / (27 + 9 * x * x);\n\nout1 = y;",
-									"fontface" : 0,
-									"fontname" : "<Monospaced>",
-									"fontsize" : 12.0,
-									"id" : "obj-5",
-									"maxclass" : "codebox",
-									"numinlets" : 1,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 13.0, 59.0, 868.0, 225.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-1",
-									"maxclass" : "newobj",
-									"numinlets" : 0,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 13.0, 14.0, 37.0, 22.0 ],
-									"text" : "in 1 x"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-4",
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 13.0, 307.0, 45.0, 22.0 ],
-									"text" : "out 1 y"
-								}
-
-							}
- ],
-						"lines" : [ 							{
-								"patchline" : 								{
-									"destination" : [ "obj-5", 0 ],
-									"source" : [ "obj-1", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-4", 0 ],
-									"source" : [ "obj-5", 0 ]
-								}
-
-							}
- ],
-						"originid" : "pat-17"
-					}
-,
-					"patching_rect" : [ 336.0, 341.0, 93.0, 22.0 ],
-					"text" : "gen tanhApprox"
+					"patching_rect" : [ 286.0, 205.0, 177.0, 22.0 ],
+					"text" : "gen @gen xin.math.tanhApprox"
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"id" : "obj-24",
+					"id" : "obj-5",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patcher" : 					{
-						"fileversion" : 1,
-						"appversion" : 						{
-							"major" : 9,
-							"minor" : 0,
-							"revision" : 2,
-							"architecture" : "x64",
-							"modernui" : 1
-						}
-,
-						"classnamespace" : "dsp.gen",
-						"rect" : [ 59.0, 106.0, 899.0, 342.0 ],
-						"gridsize" : [ 15.0, 15.0 ],
-						"boxes" : [ 							{
-								"box" : 								{
-									"code" : "// Rational tanh approximation.\n// https://www.musicdsp.org/en/latest/Other/238-rational-tanh-approximation.html?highlight=tanh%20function\n\nx = in1;\ny = 0;\n\nif(x < -3)      y = -1;\nelse if(x > 3)  y = 1;\nelse            y = x * (27 + x * x) / (27 + 9 * x * x);\n\nout1 = y;",
-									"fontface" : 0,
-									"fontname" : "<Monospaced>",
-									"fontsize" : 12.0,
-									"id" : "obj-5",
-									"maxclass" : "codebox",
-									"numinlets" : 1,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 13.0, 59.0, 868.0, 225.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-1",
-									"maxclass" : "newobj",
-									"numinlets" : 0,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 13.0, 14.0, 37.0, 22.0 ],
-									"text" : "in 1 x"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-4",
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 13.0, 307.0, 45.0, 22.0 ],
-									"text" : "out 1 y"
-								}
-
-							}
- ],
-						"lines" : [ 							{
-								"patchline" : 								{
-									"destination" : [ "obj-5", 0 ],
-									"source" : [ "obj-1", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-4", 0 ],
-									"source" : [ "obj-5", 0 ]
-								}
-
-							}
- ],
-						"originid" : "pat-19"
-					}
-,
-					"patching_rect" : [ 286.0, 205.0, 93.0, 22.0 ],
-					"text" : "gen tanhApprox"
+					"patching_rect" : [ 336.0, 341.0, 177.0, 22.0 ],
+					"text" : "gen @gen xin.math.tanhApprox"
 				}
 
 			}
@@ -456,14 +316,14 @@
 , 			{
 				"patchline" : 				{
 					"color" : [ 0.9889075756073, 0.4004887342453, 0.399963021278381, 1.0 ],
-					"destination" : [ "obj-31", 0 ],
+					"destination" : [ "obj-5", 0 ],
 					"source" : [ "obj-10", 0 ]
 				}
 
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-24", 0 ],
+					"destination" : [ "obj-6", 0 ],
 					"source" : [ "obj-11", 0 ]
 				}
 
@@ -515,13 +375,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-17", 0 ],
-					"source" : [ "obj-24", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-26", 0 ],
 					"source" : [ "obj-25", 0 ]
 				}
@@ -563,7 +416,14 @@
 				"patchline" : 				{
 					"color" : [ 0.9889075756073, 0.4004887342453, 0.399963021278381, 1.0 ],
 					"destination" : [ "obj-16", 0 ],
-					"source" : [ "obj-31", 0 ]
+					"source" : [ "obj-5", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-17", 0 ],
+					"source" : [ "obj-6", 0 ]
 				}
 
 			}
@@ -589,7 +449,7 @@
 
 			}
  ],
-		"originid" : "pat-15"
+		"originid" : "pat-419"
 	}
 
 }

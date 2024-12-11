@@ -14,6 +14,17 @@
 		"gridsize" : [ 15.0, 15.0 ],
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-2",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 114.0, 19.0, 195.0, 20.0 ],
+					"text" : "linear interpolated sample and hold"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-9",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
@@ -91,8 +102,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 279.0, 94.0, 155.0, 22.0 ],
-					"text" : "gen @file xin.phase2trigger"
+					"patching_rect" : [ 279.0, 94.0, 183.0, 22.0 ],
+					"text" : "gen @file xin.sync.phase2trigger"
 				}
 
 			}
@@ -150,7 +161,7 @@
 
 			}
  ],
-		"originid" : "pat-193"
+		"originid" : "pat-159"
 	}
 
 }

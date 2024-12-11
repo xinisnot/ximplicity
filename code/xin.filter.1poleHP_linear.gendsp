@@ -10,17 +10,28 @@
 		}
 ,
 		"classnamespace" : "dsp.gen",
-		"rect" : [ 629.0, 163.0, 413.0, 225.0 ],
+		"rect" : [ 629.0, 163.0, 382.0, 225.0 ],
 		"gridsize" : [ 15.0, 15.0 ],
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-5",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 97.0, 190.0, 115.0, 20.0 ],
+					"text" : "1pole highpass filter"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-2",
 					"maxclass" : "newobj",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 51.0, 84.0, 229.0, 22.0 ],
-					"text" : "gen @gen xin.lowpassFIlter_1pole_linear"
+					"patching_rect" : [ 51.0, 84.0, 191.0, 22.0 ],
+					"text" : "gen @gen xin.filter.1poleLP_linear"
 				}
 
 			}
@@ -43,7 +54,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 261.0, 10.0, 131.0, 22.0 ],
+					"patching_rect" : [ 223.0, 10.0, 131.0, 22.0 ],
 					"text" : "in 2 a @min 0 @max 1"
 				}
 
@@ -111,7 +122,7 @@
 
 			}
  ],
-		"originid" : "pat-57"
+		"originid" : "pat-25"
 	}
 
 }

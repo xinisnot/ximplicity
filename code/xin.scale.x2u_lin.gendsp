@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "dsp.gen",
-		"rect" : [ 646.0, 550.0, 390.0, 322.0 ],
+		"rect" : [ 646.0, 550.0, 441.0, 322.0 ],
 		"gridsize" : [ 15.0, 15.0 ],
 		"boxes" : [ 			{
 				"box" : 				{
@@ -19,8 +19,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 168.0, 68.0, 176.0, 22.0 ],
-					"text" : "gen @gen xin.sortLowHigh"
+					"patching_rect" : [ 192.0, 67.0, 199.0, 22.0 ],
+					"text" : "gen @gen xin.route.sortLowHigh"
 				}
 
 			}
@@ -35,7 +35,7 @@
 					"numinlets" : 3,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 11.0, 120.0, 333.0, 110.0 ]
+					"patching_rect" : [ 11.0, 120.0, 380.0, 106.0 ]
 				}
 
 			}
@@ -46,7 +46,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 325.0, 11.0, 44.0, 22.0 ],
+					"patching_rect" : [ 372.0, 10.0, 44.0, 22.0 ],
 					"text" : "in 3 x2"
 				}
 
@@ -58,7 +58,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 168.0, 11.0, 44.0, 22.0 ],
+					"patching_rect" : [ 192.0, 10.0, 44.0, 22.0 ],
 					"text" : "in 2 x1"
 				}
 
@@ -70,7 +70,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 11.0, 11.0, 37.0, 22.0 ],
+					"patching_rect" : [ 11.0, 10.0, 37.0, 22.0 ],
 					"text" : "in 1 x"
 				}
 
@@ -130,7 +130,7 @@
 
 			}
  ],
-		"originid" : "pat-305"
+		"originid" : "pat-373"
 	}
 
 }

@@ -10,9 +10,20 @@
 		}
 ,
 		"classnamespace" : "dsp.gen",
-		"rect" : [ 84.0, 131.0, 117.0, 172.0 ],
+		"rect" : [ 84.0, 131.0, 246.0, 180.0 ],
 		"gridsize" : [ 15.0, 15.0 ],
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-3",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 123.0, 12.0, 104.0, 20.0 ],
+					"text" : "bipolar to unipolar"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-6",
 					"maxclass" : "newobj",
@@ -82,7 +93,7 @@
 
 			}
  ],
-		"originid" : "pat-127"
+		"originid" : "pat-247"
 	}
 
 }

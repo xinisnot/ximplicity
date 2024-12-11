@@ -14,13 +14,24 @@
 		"gridsize" : [ 15.0, 15.0 ],
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-4",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 100.0, 13.0, 127.0, 20.0 ],
+					"text" : "logistic map generator"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-2",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 251.5, 83.0, 159.0, 22.0 ],
-					"text" : "gen @gen xin.phase2trigger"
+					"patching_rect" : [ 251.5, 83.0, 187.0, 22.0 ],
+					"text" : "gen @gen xin.sync.phase2trigger"
 				}
 
 			}
@@ -150,7 +161,7 @@
 
 			}
  ],
-		"originid" : "pat-165"
+		"originid" : "pat-185"
 	}
 
 }
