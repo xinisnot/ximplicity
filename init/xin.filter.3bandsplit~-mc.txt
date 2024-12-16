@@ -1,0 +1,1 @@
+max objectfile mc.xin.filter.3bandsplit~ mc.wrapper~ xin.filter.3bandsplit~;

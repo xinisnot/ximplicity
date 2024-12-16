@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--If you edit this file, please place it in a safe place since future exports will overwrite this automatically generated reference file.-->
+<c74object name="xin.filter.3bandsplit~">
+<metadatalist>
+<metadata name="author">xin</metadata>
+<metadata name="tag">audio</metadata>
+</metadatalist>
+<methodlist>
+<method name="message"><digest>message input</digest><description>message input</description></method>
+</methodlist>
+<attributelist></attributelist>
+<description>3-band splitter (3rd-order)</description>
+<digest>3-band splitter (3rd-order)</digest>
+</c74object>
