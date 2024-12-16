@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "rnbo",
-		"rect" : [ 229.0, 355.0, 462.0, 542.0 ],
+		"rect" : [ 230.0, 355.0, 461.0, 542.0 ],
 		"gridsize" : [ 15.0, 15.0 ],
 		"title" : "xin.buf.allocSawN.rnbopat",
 		"boxes" : [ 			{
@@ -80,23 +80,23 @@
 					"patching_rect" : [ 154.0, 11.0, 216.0, 23.0 ],
 					"rnbo_classname" : "param",
 					"rnbo_extra_attributes" : 					{
-						"preset" : 1,
+						"order" : "0",
+						"displayname" : "",
+						"exponent" : 1.0,
 						"enum" : "",
-						"steps" : 0.0,
+						"preset" : 1,
+						"meta" : "",
+						"ctlin" : 0.0,
+						"tonormalized" : "",
 						"displayorder" : "-",
 						"fromnormalized" : "",
-						"ctlin" : 0.0,
-						"meta" : "",
-						"unit" : "",
-						"displayname" : "",
-						"order" : "0",
+						"steps" : 0.0,
 						"sendinit" : 1,
-						"exponent" : 1.0,
-						"tonormalized" : ""
+						"unit" : ""
 					}
 ,
 					"rnbo_serial" : 1,
-					"rnbo_uniqueid" : "harmony[1]",
+					"rnbo_uniqueid" : "harmony",
 					"rnboinfo" : 					{
 						"needsInstanceInfo" : 1,
 						"argnames" : 						{
@@ -483,8 +483,8 @@
 						"changesPatcherIO" : 0
 					}
 ,
-					"text" : "param harmony 0 @min 0 @max 22050",
-					"varname" : "harmony[1]"
+					"text" : "param harmony 1 @min 1 @max 22050",
+					"varname" : "harmony"
 				}
 
 			}
@@ -497,8 +497,8 @@
 					"patching_rect" : [ 10.0, 502.0, 36.0, 23.0 ],
 					"rnbo_classname" : "out",
 					"rnbo_extra_attributes" : 					{
-						"comment" : "",
-						"meta" : ""
+						"meta" : "",
+						"comment" : ""
 					}
 ,
 					"rnbo_serial" : 1,
@@ -899,7 +899,7 @@
 			}
 , 			{
 				"box" : 				{
-					"code" : "@state dst = new buffer(\"dst\");\r\n\r\n@param({ min: 0, step: 1 }) harmony = 0;\r\n\r\nlet dst_size = dim(dst);\r\n\r\nfor(let i = 0; i < dst_size; i++) {\r\n\tlet y = 0;\r\n\tlet p = i / (dst_size - 1);\r\n\t\r\n\tfor(let harm = 1; harm <= harmony; harm++) {\r\n\t\ty += sin(TWOPI * p * harm) / harm;\r\n\t}\r\n\t\r\n\tpoke(dst, y, i);\r\n}\r\n\r\nout1 = 1;",
+					"code" : "@state dst = new buffer(\"dst\");\r\n\r\n@param({ min: 1, step: 1 }) harmony = 1;\r\n\r\nlet dst_size = dim(dst);\r\n\r\nfor(let i = 0; i < dst_size; i++) {\r\n\tlet y = 0;\r\n\tlet p = i / (dst_size - 1);\r\n\t\r\n\tfor(let harm = 1; harm <= harmony; harm++) {\r\n\t\ty += sin(TWOPI * p * harm) / harm;\r\n\t}\r\n\t\r\n\tpoke(dst, y, i);\r\n}\r\n\r\nout1 = 1;",
 					"fontface" : 0,
 					"fontname" : "<Monospaced>",
 					"fontsize" : 12.0,
@@ -911,12 +911,12 @@
 					"patching_rect" : [ 10.0, 94.0, 439.0, 330.0 ],
 					"rnbo_classname" : "codebox",
 					"rnbo_extra_attributes" : 					{
-						"code" : "@state dst = new buffer(\"dst\");\r\n\r\n@param({ min: 0, step: 1 }) harmony = 0;\r\n\r\nlet dst_size = dim(dst);\r\n\r\nfor(let i = 0; i < dst_size; i++) {\r\n\tlet y = 0;\r\n\tlet p = i / (dst_size - 1);\r\n\t\r\n\tfor(let harm = 1; harm <= harmony; harm++) {\r\n\t\ty += sin(TWOPI * p * harm) / harm;\r\n\t}\r\n\t\r\n\tpoke(dst, y, i);\r\n}\r\n\r\nout1 = 1;",
-						"safemath" : 1,
-						"hot" : 0
+						"code" : "@state dst = new buffer(\"dst\");\r\n\r\n@param({ min: 1, step: 1 }) harmony = 1;\r\n\r\nlet dst_size = dim(dst);\r\n\r\nfor(let i = 0; i < dst_size; i++) {\r\n\tlet y = 0;\r\n\tlet p = i / (dst_size - 1);\r\n\t\r\n\tfor(let harm = 1; harm <= harmony; harm++) {\r\n\t\ty += sin(TWOPI * p * harm) / harm;\r\n\t}\r\n\t\r\n\tpoke(dst, y, i);\r\n}\r\n\r\nout1 = 1;",
+						"hot" : 0,
+						"safemath" : 1
 					}
 ,
-					"rnbo_serial" : 7,
+					"rnbo_serial" : 2,
 					"rnbo_uniqueid" : "codebox_obj-2",
 					"rnboinfo" : 					{
 						"needsInstanceInfo" : 1,
@@ -955,7 +955,7 @@
 								"isparam" : 0,
 								"deprecated" : 0,
 								"type" : "number",
-								"defaultValue" : "0"
+								"defaultValue" : "1"
 							}
 ,
 							"in1" : 							{
@@ -1052,8 +1052,8 @@
 						"meta" : ""
 					}
 ,
-					"rnbo_serial" : 2,
-					"rnbo_uniqueid" : "harmony",
+					"rnbo_serial" : 1,
+					"rnbo_uniqueid" : "harmony[1]",
 					"rnboinfo" : 					{
 						"needsInstanceInfo" : 1,
 						"argnames" : 						{
@@ -1118,7 +1118,7 @@
 					}
 ,
 					"text" : "in 1 @comment bang",
-					"varname" : "harmony"
+					"varname" : "harmony[1]"
 				}
 
 			}
@@ -1177,7 +1177,7 @@
 
 			}
  ],
-		"originid" : "pat-265"
+		"originid" : "pat-58"
 	}
 
 }
