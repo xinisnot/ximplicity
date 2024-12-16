@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "dsp.gen",
-		"rect" : [ 459.0, 302.0, 600.0, 469.0 ],
+		"rect" : [ 459.0, 302.0, 600.0, 495.0 ],
 		"gridsize" : [ 15.0, 15.0 ],
 		"boxes" : [ 			{
 				"box" : 				{
@@ -18,14 +18,14 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 15.0, 434.0, 71.0, 22.0 ],
+					"patching_rect" : [ 15.0, 462.0, 71.0, 22.0 ],
 					"text" : "out 1 phase"
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"code" : "History isActive(0);\r\nHistory ramp(0);\r\n\r\ntrigger   = in1;\r\nfrequency = in2;\r\n\r\nif(trigger) {\r\n    isActive = 1;\r\n    ramp     = 0;\r\n}\r\n\r\nout1 = ramp;\r\n\r\nif(isActive) {\r\n    ramp = clip(ramp + frequency / SAMPLERATE, 0, 1);\r\n\r\n    if(ramp >= 1) {\r\n        isActive = 0;\r\n        ramp     = 0;\r\n    }\r\n}",
+					"code" : "// trigger to phase\r\n\r\nHistory isActive(0);\r\nHistory ramp(0);\r\n\r\ntrigger   = in1;\r\nfrequency = in2;\r\n\r\nif(trigger) {\r\n    isActive = 1;\r\n    ramp     = 0;\r\n}\r\n\r\nout1 = ramp;\r\n\r\nif(isActive) {\r\n    ramp = clip(ramp + frequency / SAMPLERATE, 0, 1);\r\n\r\n    if(ramp >= 1) {\r\n        isActive = 0;\r\n        ramp     = 0;\r\n    }\r\n}",
 					"fontface" : 0,
 					"fontname" : "<Monospaced>",
 					"fontsize" : 12.0,
@@ -34,7 +34,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 15.0, 49.5, 502.0, 367.0 ]
+					"patching_rect" : [ 15.0, 50.0, 498.0, 394.0 ]
 				}
 
 			}
@@ -45,7 +45,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 498.0, 10.0, 84.0, 22.0 ],
+					"patching_rect" : [ 494.0, 10.0, 84.0, 22.0 ],
 					"text" : "in 2 frequency"
 				}
 
@@ -85,7 +85,7 @@
 
 			}
  ],
-		"originid" : "pat-15"
+		"originid" : "pat-173"
 	}
 
 }

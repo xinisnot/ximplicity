@@ -1,0 +1,128 @@
+{
+	"patcher" : 	{
+		"fileversion" : 1,
+		"appversion" : 		{
+			"major" : 9,
+			"minor" : 0,
+			"revision" : 2,
+			"architecture" : "x64",
+			"modernui" : 1
+		}
+,
+		"classnamespace" : "dsp.gen",
+		"rect" : [ 524.0, 87.0, 760.0, 841.0 ],
+		"gridsize" : [ 15.0, 15.0 ],
+		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-7",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 660.0, 810.0, 91.0, 22.0 ],
+					"text" : "out 2 imaginary"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"code" : "// This was originally implemented in Pure Data as vcf~.\r\n// The original source code can be found in d_osc.c.\r\n// https://github.com/pure-data/pure-data/blob/master/src/d_osc.c\r\n// The following is the license terms for Pure Data.\r\n\n/*\nThis software is copyrighted by Miller Puckette and others.  The following\nterms (the \"Standard Improved BSD License\") apply to all files associated with\nthe software unless explicitly disclaimed in individual files:\n\nRedistribution and use in source and binary forms, with or without\nmodification, are permitted provided that the following conditions are\nmet:\n\n1. Redistributions of source code must retain the above copyright\n   notice, this list of conditions and the following disclaimer.\n2. Redistributions in binary form must reproduce the above  \n   copyright notice, this list of conditions and the following \n   disclaimer in the documentation and/or other materials provided\n   with the distribution.\n3. The name of the author may not be used to endorse or promote\n   products derived from this software without specific prior \n   written permission.\n\nTHIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY\nEXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,\nTHE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A\nPARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR\nBE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,\nEXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED\nTO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,   \nDATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND\nON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT\nLIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING\nIN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF\nTHE POSSIBILITY OF SUCH DAMAGE.\n*/\r\n\r\n\r\nHistory re1(0);\r\nHistory im1(0);\r\n\r\nampcorrect\t= 2 - 2 / (in3 + 2);\r\ncf\t\t\t= in2 / SAMPLERATE;\r\nr\t\t\t= 1 - cf * (TWOPI / in3);\r\ncoefr\t\t= r * cycle(cf, index = \"phase\");\r\ncoefi\t\t= r * cycle(cf - 0.25, index = \"phase\");\r\n\r\nre0\t\t= ampcorrect * (1 - r) * in1 + coefr * re1 - coefi * im1;\r\nim0\t\t= coefi * re1 + coefr * im1;\r\n\r\nout1\t= re0;\r\nout2\t= im0;\r\n\r\nre1\t\t= re0;\r\nim1 \t= im0;",
+					"fontface" : 0,
+					"fontname" : "<Monospaced>",
+					"fontsize" : 12.0,
+					"id" : "obj-6",
+					"maxclass" : "codebox",
+					"numinlets" : 3,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "" ],
+					"patching_rect" : [ 16.0, 47.0, 663.0, 752.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-5",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 660.0, 14.0, 87.0, 22.0 ],
+					"text" : "in 3 resonance"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-1",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 16.0, 14.0, 57.0, 22.0 ],
+					"text" : "in 1 input"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-2",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 338.0, 14.0, 84.0, 22.0 ],
+					"text" : "in 2 frequency"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-4",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 16.0, 810.0, 59.0, 22.0 ],
+					"text" : "out 1 real"
+				}
+
+			}
+ ],
+		"lines" : [ 			{
+				"patchline" : 				{
+					"destination" : [ "obj-6", 0 ],
+					"source" : [ "obj-1", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-6", 1 ],
+					"source" : [ "obj-2", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-6", 2 ],
+					"source" : [ "obj-5", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-4", 0 ],
+					"source" : [ "obj-6", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-7", 0 ],
+					"source" : [ "obj-6", 1 ]
+				}
+
+			}
+ ],
+		"originid" : "pat-31"
+	}
+
+}

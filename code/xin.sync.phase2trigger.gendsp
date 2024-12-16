@@ -10,9 +10,20 @@
 		}
 ,
 		"classnamespace" : "dsp.gen",
-		"rect" : [ 84.0, 131.0, 158.0, 347.0 ],
+		"rect" : [ 84.0, 131.0, 210.0, 351.0 ],
 		"gridsize" : [ 15.0, 15.0 ],
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-3",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 101.0, 14.0, 92.0, 20.0 ],
+					"text" : "phase to trigger"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-8",
 					"maxclass" : "newobj",
@@ -131,7 +142,7 @@
 
 			}
  ],
-		"originid" : "pat-123"
+		"originid" : "pat-169"
 	}
 
 }
