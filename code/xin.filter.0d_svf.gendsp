@@ -1,0 +1,146 @@
+{
+	"patcher" : 	{
+		"fileversion" : 1,
+		"appversion" : 		{
+			"major" : 9,
+			"minor" : 0,
+			"revision" : 2,
+			"architecture" : "x64",
+			"modernui" : 1
+		}
+,
+		"classnamespace" : "dsp.gen",
+		"rect" : [ 608.0, 145.0, 842.0, 630.0 ],
+		"gridsize" : [ 15.0, 15.0 ],
+		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-3",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 734.0, 15.0, 35.0, 22.0 ],
+					"text" : "in 3 r"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-7",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 734.0, 591.0, 91.0, 22.0 ],
+					"text" : "out 3 bandpass"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-6",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 373.0, 591.0, 87.0, 22.0 ],
+					"text" : "out 2 highpass"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"code" : "// Example code for a TPT/ZDF-SVF\n// based on code written by Robin Schmidt, licensing/copyright: none (public domain)\n// http://www.kvraudio.com/forum/viewtopic.php?p=4932644&highlight=tpt+zdfsvf#4932644\r\n// https://cycling74.com/forums/zero-delay-feedback-svf-in-gen\r\n\r\nHistory s1(0);\r\nHistory s2(0);\r\nHistory g(0);\r\n\r\n\r\nif(change(in2)) {\r\n    g = tan(PI * in2 / SAMPLERATE);\r\n}\r\n\r\nr = clip(1 - in3, 0.005, 1);\r\n\r\n// compute highpass output via Eq. 5.1:\r\nhighpass = (in1 - 2*r*s1 - g*s1 - s2) / (1 + 2*r*g + g*g);\r\n\r\n// compute bandpass output by applying 1st integrator to highpass output:\r\nbandpass = g*highpass + s1;\r\n\r\n// compute lowpass output by applying 2nd integrator to bandpass output:\r\nlowpass  = g*bandpass + s2;\r\n\r\n// state update in 1st integrator \r\ns1 = g*highpass + bandpass;\r\ns2 = g*bandpass + lowpass;\r\n\r\nout1 = lowpass;\r\nout2 = bandpass;\r\nout3 = highpass;",
+					"fontface" : 0,
+					"fontname" : "<Monospaced>",
+					"fontsize" : 12.0,
+					"id" : "obj-5",
+					"maxclass" : "codebox",
+					"numinlets" : 3,
+					"numoutlets" : 3,
+					"outlettype" : [ "", "", "" ],
+					"patching_rect" : [ 13.0, 48.0, 740.0, 528.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-1",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 13.0, 11.0, 37.0, 22.0 ],
+					"text" : "in 1 x"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-2",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 373.0, 11.0, 38.0, 22.0 ],
+					"text" : "in 2 g"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-4",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 13.0, 591.0, 82.0, 22.0 ],
+					"text" : "out 1 lowpass"
+				}
+
+			}
+ ],
+		"lines" : [ 			{
+				"patchline" : 				{
+					"destination" : [ "obj-5", 0 ],
+					"source" : [ "obj-1", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-5", 1 ],
+					"source" : [ "obj-2", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-5", 2 ],
+					"source" : [ "obj-3", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-4", 0 ],
+					"source" : [ "obj-5", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-6", 0 ],
+					"source" : [ "obj-5", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-7", 0 ],
+					"source" : [ "obj-5", 2 ]
+				}
+
+			}
+ ],
+		"originid" : "pat-316"
+	}
+
+}

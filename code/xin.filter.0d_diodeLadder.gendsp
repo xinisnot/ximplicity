@@ -1,0 +1,110 @@
+{
+	"patcher" : 	{
+		"fileversion" : 1,
+		"appversion" : 		{
+			"major" : 9,
+			"minor" : 0,
+			"revision" : 2,
+			"architecture" : "x64",
+			"modernui" : 1
+		}
+,
+		"classnamespace" : "dsp.gen",
+		"rect" : [ 163.0, 121.0, 1064.0, 832.0 ],
+		"gridsize" : [ 15.0, 15.0 ],
+		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-3",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 1017.0, 12.0, 35.0, 22.0 ],
+					"text" : "in 3 r"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"code" : "// Emulation of Diode ladder lowpass filter as found in Roland TB303 or EMS VCS3\r\n// The original patch was upsampled 2x by poly~.\r\n// https://cycling74.com/forums/zero-delay-feedback-svf-in-gen\n// source: http://pastebin.com/i2c8ddh7\r\n\r\n// This code is released under the MIT license (see below).\n//\n// The MIT License\n// \n// Copyright (c) 2012 Dominique Wurtz (www.blaukraut.info)\n// \n// Permission is hereby granted, free of charge, to any person obtaining a copy\n// of this software and associated documentation files (the \"Software\"), to deal\n// in the Software without restriction, including without limitation the rights\n// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\n// copies of the Software, and to permit persons to whom the Software is\n// furnished to do so, subject to the following conditions:\n// \n// The above copyright notice and this permission notice shall be included in\n// all copies or substantial portions of the Software.\n// \n// THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\n// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\n// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\n// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN\n// THE SOFTWARE.\r\n\r\n\r\nHistory z0(0), z1(0), z2(0), z3(0);\n\nk = in3 * 20;\nA = in3 * 0.5 + 1;\nwc = PI * (in2 * 1/samplerate); // PI is Nyquist frequency \n// wc = 2 * tan(0.5*wc); // dewarping, not required with 2x oversampling\nwc2 = wc*wc;\nwc3 = wc2*wc;\nwc4 = wc3*wc;\nb = 1 / (1 + 8*wc + 20*wc2 + 16*wc3 + 2*wc4);\ng = 2*wc4 * b;\n\n// current state\ns = (z0*wc3 + z1*(wc2+2*wc3) + z2*(wc+4*wc2+2*wc3) + z3*(1+6*wc+9*wc2+2*wc3)) * b;\n\n// solve feedback loop (linear)\ny4 = (g*in1 + s) / (1 + g*k);\n\n// input clipping\ny0 = tanh(in1 - k*y4);\n\n// Compute all integrator outputs (y1, y2, y3, y4).\n// Unlike in the well-known Moog transistor ladder, this gets quite nasty (OL - no shit!) due the\n// inherent coupling between filter stages.\ny1 = (y0*(2*wc+12*wc2+20*wc3+8*wc4) + z0*(1+6*wc+10*wc2+4*wc3) + z1*(2*wc+8*wc2+6*wc3) + z2*(2*wc2+4*wc3) + z3*2*wc3)*b;\ny2 = (y0*(2*wc2+8*wc3+6*wc4) + z0*(wc+4*wc2+3*wc3) + z1*(1+6*wc+11*wc2+6*wc3) + z2*(wc+4*wc2+4*wc3) + z3*(wc2+2*wc3))*b;\ny3 = (y0*(2*wc3+4*wc4) + z0*(wc2+2*wc3) + z1*(wc+4*wc2+4*wc3) + z2*(1+6*wc+10*wc2+4*wc3) + z3*(wc+4*wc2+2*wc3))*b;\ny4 = g*y0 + s;\n\n// update filter state\nz0 += 4*wc*(y0 - y1 + y2);\nz1 += 2*wc*(y1 - 2*y2 + y3);\nz2 += 2*wc*(y2 - 2*y3 + y4);\nz3 += 2*wc*(y3 - 2*y4);\n\nout1 = A*y4;",
+					"fontface" : 0,
+					"fontname" : "<Monospaced>",
+					"fontsize" : 12.0,
+					"id" : "obj-5",
+					"maxclass" : "codebox",
+					"numinlets" : 3,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 12.0, 49.5, 1024.0, 731.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-1",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 12.0, 12.0, 37.0, 22.0 ],
+					"text" : "in 1 x"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-2",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 515.0, 12.0, 60.0, 22.0 ],
+					"text" : "in 2 cutoff"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-4",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 12.0, 796.0, 45.0, 22.0 ],
+					"text" : "out 1 y"
+				}
+
+			}
+ ],
+		"lines" : [ 			{
+				"patchline" : 				{
+					"destination" : [ "obj-5", 0 ],
+					"source" : [ "obj-1", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-5", 1 ],
+					"source" : [ "obj-2", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-5", 2 ],
+					"source" : [ "obj-3", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-4", 0 ],
+					"source" : [ "obj-5", 0 ]
+				}
+
+			}
+ ],
+		"originid" : "pat-6"
+	}
+
+}
